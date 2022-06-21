@@ -1,0 +1,59 @@
+
+<body>
+    <div class="alldiv">
+     
+    <div *ngIf="!successful" class="regidiv">
+        <h2>Twoje dane</h2>
+        <p><input id="firstName" [(ngModel)]="model.firstName"  class="name" type="text" placeholder="Imię"><input [(ngModel)]="model.lastName" class="surname" type="text" placeholder="Nazwisko"></p>
+      
+        <p><input [(ngModel)]="model.date" type="text" onblur="(this.type='text')"  onfocus="(this.type='date')" placeholder="Data urodzenia"></p>
+        <p><input [(ngModel)]="model.street" type="text" placeholder="Ulica i numer"></p>
+        <p><input [(ngModel)]="model.code" class="code" type="text" placeholder="Kod pocztowy"><input [(ngModel)]="model.city" class="city" type="text" placeholder="Miasto"></p>
+        <p><input [(ngModel)]="model.country" type="text" placeholder="Kraj"></p>
+        <p><input [(ngModel)]="model.phone" class="phone" type="tel" placeholder="Telefon"><input [(ngModel)]="model.email" class="email" type="email" placeholder="Adres e-mail"></p>
+        <button (click)="checkOrder()">Przejdź dalej</button>
+    </div>  
+    
+    <div *ngIf="successful" class="confirmdiv">
+        <h1>Podsumowanie zamówienia</h1>
+    <div>
+                <table> 
+                    <thead>
+                     <tr>
+                         <th></th>
+                         <th>Produkt</th>
+                         <th>Opis</th>
+                         <th>Ilość</th>
+                         <th>Cena</th>
+                     </tr>
+                    </thead>
+                    <tbody>
+                        
+                    <tr class="basketProduct" *ngFor="let product of feedbackProducts">
+                        <td><img class="photo" src="../assets/img/beef-jerky.jpg"></td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.description}}</td>
+                        <td>{{product.amount}}</td>
+                        <td>{{(product.price*product.amount).toFixed(2)}} zł</td>
+                    </tr>
+             
+                 </tbody>
+                </table>
+                <!-- <h2>Twoje dane</h2>
+        <p><input [(ngModel)]="userDetails.firstName" class="name" type="text"><input [(ngModel)]="userDetails.lastName" class="surname" type="text" placeholder="Nazwisko"></p>
+        <p><input [(ngModel)]="userDetails.birthday" type="date"></p>
+        <p>{{userDetails.birthday.toLocaleDateString</p>
+        <p><input [(ngModel)]="userDetails.street" type="text" placeholder="Ulica i numer"></p>
+        <p><input [(ngModel)]="userDetails.code" class="code" type="text"><input [(ngModel)]="userDetails.city" class="city" type="text"></p>
+        <p><input [(ngModel)]="userDetails.country" type="text" placeholder="Kraj"></p>
+        <p><input [(ngModel)]="userDetails.phone" class="phone" type="tel"><input [(ngModel)]="userDetails.email" class="email" type="email"></p>
+        <button (click)="checkOrder()">Przejdź dalej</button> -->
+               
+            </div>
+            <div class="details">
+                
+            </div>
+        </div>
+    </div>
+
+</body>

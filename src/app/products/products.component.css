@@ -1,0 +1,95 @@
+*{
+    font-family:"Amerika Sans",sans-serif;
+}
+*{
+    box-sizing: border-box;
+  }
+h1{
+    text-align: center;
+    font-weight: bold;
+    font-size: xx-large;
+    margin-bottom: 50px;
+}
+h2{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+h1,h2,p{
+    font-family:"Amerika Sans",sans-serif; 
+  }
+body{
+    margin:0;
+    padding: 0;
+  }
+li{
+    display: inline-block;
+    /* padding-left: 5%;
+    padding-right: 5%; */
+}
+.products{
+    /* text-align:left; */
+    margin-right: 3%;
+    margin-left: 5%;
+    font-size: small;
+}
+
+
+li:hover{
+color: #572F0E;
+}
+.element{
+    position: relative;
+}
+.descdiv{
+    display: none;
+}
+.desc{
+   position: absolute;
+   top: 50%;
+   left: 43%;
+   border-radius:15px ;
+   background-color: #956944;
+   font-size: x-large;
+   font-family:"Amerika Sans",sans-serif;
+   font-weight: bold;
+   color: white;
+   border: black;
+   text-align: center;
+
+}
+.desc:hover{
+    background-color: #572F0E;
+}
+.basket:hover{
+    background-color: #572F0E;
+}
+.basket{
+   position: absolute;
+   top: 60%;
+   left: 30%;
+   border-radius:15px ;
+   background-color: #956944;
+   font-size: x-large;
+   font-family:"Amerika Sans",sans-serif;
+   font-weight: bold;
+   color: white;
+   border: black;
+   text-align: center;
+
+}
+.element:hover .descdiv{
+    display: block;
+}
+.element:hover .photo{
+        opacity: 50%;
+}
+.photo{
+    height: 300px;
+}
+.element{
+    width: 500px;
+    text-align: center;
+
+}
+

@@ -1,0 +1,33 @@
+
+ 
+<div *ngIf="products.length!==0" class="basket">
+    <h1 class="test">Twoje produkty</h1>
+   <table>
+       <thead>
+        <tr>
+            <th></th>
+            <th>Produkt</th>
+            <th>Ilość</th>
+            <th>Cena</th>
+            <th>Usuń</th>
+        </tr>
+       </thead>
+       <tbody>
+           
+       <tr class="basketProduct" *ngFor="let product of products">
+           <td><img class="photo" src="../assets/img/beef-jerky.jpg"></td>
+           <td>{{product.name}}</td>
+           <td>{{product.amount}}</td>
+           <td>{{(product.price*product.amount).toFixed(2)}} zł</td>
+           <td><img (click)="deleteProduct(product)" class="trash" src="../assets/img/trash.png"></td>
+       </tr>
+
+    </tbody>
+   
+   </table>
+
+</div>
+<div *ngIf="products.length==0">
+    <h2>Brak produktów</h2>
+    
+</div>

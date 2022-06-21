@@ -1,0 +1,16 @@
+<body>
+<h1 class="hej">Dostepne produkty:</h1>
+<div class="products">
+<li class="element" *ngFor="let product of productList">
+    <h2>{{product.name}}</h2>
+    <h2>{{product.price}} zł</h2>
+   <img class="photo" src="../assets/img/beef-jerky.jpg">
+   
+   <div class="descdiv">
+   <button class="desc">Wiecej</button>
+   <button (click)="addProduct(product)" class="basket">Dodaj do koszyka</button>
+   <div>{{product.description}}</div>
+   </div>
+</li>
+</div>
+</body>

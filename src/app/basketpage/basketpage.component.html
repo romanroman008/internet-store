@@ -1,0 +1,51 @@
+<head><link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        
+    
+<h1>Twój koszyk</h1>
+<div *ngIf="products.length!==0" class="basket">
+    
+   <table> 
+       <thead>
+        <tr>
+            <th></th>
+            <th>Produkt</th>
+            <th></th>
+            <th>Ilość</th>
+            <th></th>
+            <th>Cena</th>
+            <th>Usuń</th>
+        </tr>
+       </thead>
+       <tbody>
+           
+       <tr class="basketProduct" *ngFor="let product of products">
+           <td><img class="photo" src="../assets/img/beef-jerky.jpg"></td>
+           <td>{{product.name}}</td>
+           <td class="pros"><mat-icon (click)="add(product)">adds</mat-icon></td>
+           <td>{{product.amount}}</td>
+           <td class="con"><mat-icon (click)="removeProduct(product)">remove</mat-icon></td>
+           <td>{{(product.price*product.amount).toFixed(2)}} zł</td>
+           <td><img (click)="deleteProduct(product)" class="trash" src="../assets/img/trash.png"></td>
+           <!-- <td class="x">X</td> -->
+       </tr>
+
+    </tbody>
+   </table>
+   
+
+
+   <div class="paydiv">
+<button class="b1" (click)="continueShopping()">Kontynuuj zakupy</button>
+<button class="b2" (click)="goOn()">Przejdź dalej</button>
+
+
+   </div>
+</div>
+<div *ngIf="products.length==0">
+    <h2>Brak produktów</h2>
+    
+</div>
+</body>
