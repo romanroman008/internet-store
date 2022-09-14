@@ -90,7 +90,7 @@ export class OrderPrepComponent implements OnInit {
 
   checkOrder(){
     this.checkFields();
-  if(!this.emptyFields){
+  //if(!this.emptyFields){
     this.http.post<any>(API +"adddetails",
     {
       firstName:this.model.firstName,
@@ -140,7 +140,7 @@ export class OrderPrepComponent implements OnInit {
         console.log(error);
       }
     )
-  }
+  //}
 }
 
 }

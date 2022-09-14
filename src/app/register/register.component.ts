@@ -58,32 +58,35 @@ export class RegisterComponent implements OnInit {
     let headers: HttpHeaders = new HttpHeaders().append('Access-Control-Allow-Origin', '*').append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method");
     let options = { headers: headers }
 
-    // this.http.post<Observable<Object>>(environment.apiUrl + "register",
-    // {
-    //   login:this.model.login,
-    //   password:this.model.password1,
-    //   firstName:this.model.firstName,
-    //   surname:this.model.surname,
-    //   date:this.model.date,
-    //   street:this.model.street,
-    //   code:this.model.code,
-    //   city:this.model.city,
-    //   country:this.model.country,
-    //   phone:this.model.phone,
-    //   email:this.model.email
-    // },options
-    // ).subscribe(
-    //   response=>{
-    //     if(response){
-    //       this.router.navigate(['products'])
-    //     }
-    //     else{
+    this.http.post<Observable<Object>>(environment.apiUrl + "/registration/register",
+    {
+      login:this.model.login,
+      password:this.model.password1,
+      firstName:this.model.firstName,
+      lastName:this.model.lastName,
+      birthday:this.model.date,
+      street:this.model.street,
+      streetNumber:2,
+      flatNumber:3,
+      //code:this.model.code,
+      city:this.model.city,
+      country:this.model.country,
+      email:this.model.email,
+      phone:this.model.phone
+      
+    },options
+    ).subscribe(
+      response=>{
+        if(response){
+          this.router.navigate(['products'])
+        }
+        else{
 
-    //     }
-    //   },error=>{
-    //     console.log(error);
-    //   }
-    // )
+        }
+      },error=>{
+        console.log(error);
+      }
+    )
   }
 
 }

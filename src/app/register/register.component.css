@@ -2,6 +2,14 @@ body{
     text-align: center;
     color: white;
 }
+h2{
+    font-weight: bold;
+    font-size: x-large;
+}
+
+h1,h2,p{
+    font-family:"Amerika Sans",sans-serif; 
+  }
 .regidiv{
     background-color:#572F0E;
     width: 600px;

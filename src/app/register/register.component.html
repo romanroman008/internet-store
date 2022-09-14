@@ -16,7 +16,7 @@
         <p><input [(ngModel)]="model.code" class="code" type="text" placeholder="Kod pocztowy"><input [(ngModel)]="model.city" class="city" type="text" placeholder="Miasto"></p>
         <p><input [(ngModel)]="model.country" type="text" placeholder="Kraj"></p>
         <p><input [(ngModel)]="model.phone" class="phone" type="tel" placeholder="Telefon"><input [(ngModel)]="model.email" class="email" type="email" placeholder="Adres e-mail"></p>
-        <button (click)="check()">Załóż konto</button>
+        <button (click)="sendRegister()">Załóż konto</button>
     </div>  
     
     <div *ngIf="successful" class="confirmdiv">
