@@ -13,6 +13,9 @@
         <p><input [(ngModel)]="model.phone" class="phone" type="tel" placeholder="Telefon"><input [(ngModel)]="model.email" class="email" type="email" placeholder="Adres e-mail"></p>
         <button (click)="checkOrder()">Przejdź dalej</button>
     </div>  
+    <div *ngIf="emptyFields" class="error">
+    <h1>Nie wszystkie dane uzupełnione</h1>
+    </div>
     
     <div *ngIf="successful" class="confirmdiv">
         <h1>Podsumowanie zamówienia</h1>
@@ -48,7 +51,7 @@
         <p><input [(ngModel)]="userDetails.country" type="text" placeholder="Kraj"></p>
         <p><input [(ngModel)]="userDetails.phone" class="phone" type="tel"><input [(ngModel)]="userDetails.email" class="email" type="email"></p>
         <button (click)="checkOrder()">Przejdź dalej</button> -->
-               
+               <button (click)="sendOrder()">Potwierdź</button>
             </div>
             <div class="details">
                 

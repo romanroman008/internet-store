@@ -38,7 +38,7 @@ export class ProductsComponent {
    }
 
    getALLProducts(){
-     this.http.get<Array<ProductModel>>(API+"getallproducts",httpOptions)
+     this.http.get<Array<ProductModel>>("http://localhost:8081/product/getallproducts",httpOptions)
      .subscribe((products)=>{
       console.log(products);
        this.productList=products;

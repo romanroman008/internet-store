@@ -55,7 +55,8 @@ export class OrderPrepComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  checkFields(){
+  checkFields():boolean{
+    
     let allFields:Array<string>=[
       this.model.firstName,
       this.model.lastName,
@@ -67,16 +68,14 @@ export class OrderPrepComponent implements OnInit {
       this.model.phone,
       this.model.email
     ]
-    // allFields.forEach(e => {
-    //   if(e.)
-    //   return false;
-    // })
-    // return true;
-    if(this.model.firstName==''){
+    this.emptyFields=false;
+    allFields.forEach(e => {
+      if(e==null){
       this.emptyFields=true;
-    }
-    console.log(this.model.firstName);
-
+      }
+    })
+    return this.emptyFields;
+   
   }
 
   red='red';
@@ -89,8 +88,10 @@ export class OrderPrepComponent implements OnInit {
   }
 
   checkOrder(){
-    this.checkFields();
-  //if(!this.emptyFields){
+    this.emptyFields=this.checkFields();
+    console.log(this.emptyFields);
+  if(!this.emptyFields){
+    console.log(this.emptyFields);
     this.http.post<any>(API +"adddetails",
     {
       firstName:this.model.firstName,
@@ -140,7 +141,30 @@ export class OrderPrepComponent implements OnInit {
         console.log(error);
       }
     )
-  //}
+  }
+}
+
+sendOrder(){
+  console.log(this.feedbackProducts);
+  console.log(this.model.email);
+  this.http.post<any>(API + "addorder",
+  {
+    date:new Date(),
+    productList:this.feedbackProducts,
+    ownerEmail:this.model.email
+  },httpOptions
+  ).subscribe(
+    response=>{
+    if(response){
+
+      this.go();
+      console.log(response);
+    }
+  },error=>{
+    console.log(error);
+  }
+  )
 }
 
 }
+

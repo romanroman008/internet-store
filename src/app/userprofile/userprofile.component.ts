@@ -1,8 +1,9 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { AuthenticationService } from '../authentication.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -13,7 +14,14 @@ export class UserprofileComponent implements OnInit {
 
   model:any={}
 
-  constructor(private router:Router,private http:HttpClient) { }
+  errorMessage = 'Invalid Credentials';
+  successMessage!: string;
+  invalidLogin = false;
+  loginSuccess = false;
+
+
+  constructor(private route: ActivatedRoute, private router:Router,private http:HttpClient,
+    private authenticationService: AuthenticationService) { }
 
   ngOnInit(): void {
   }
@@ -22,7 +30,7 @@ export class UserprofileComponent implements OnInit {
     let headers: HttpHeaders = new HttpHeaders().append('Access-Control-Allow-Origin', '*').append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method");
     let options = { headers: headers }
 
-    this.http.post<Observable<Object>>(environment.apiUrl+"/registration/login",
+    this.http.post<Observable<Object>>("http://localhost:8081/registration/login",
     {
       login:this.model.login,
       password:this.model.password
@@ -38,6 +46,18 @@ export class UserprofileComponent implements OnInit {
       }
     )
   }
+
+  // login(){
+  //   this.authenticationService.authenticationService(this.model.username, this.model.password).subscribe((result)=> {
+  //     this.invalidLogin = false;
+  //     this.loginSuccess = true;
+  //     this.successMessage = 'Login Successful.';
+  //     this.router.navigate(['products']);
+  //   }, () => {
+  //     this.invalidLogin = true;
+  //     this.loginSuccess = false;
+  //   });      
+  // }
 
   register(){
     this.router.navigate(['/register']);

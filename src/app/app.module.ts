@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
@@ -18,6 +18,7 @@ import { OrderPrepComponent } from './order-prep/order-prep.component';
 
 import { UseprofileextraComponent } from './useprofileextra/useprofileextra.component';
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { HttpInterceptorService } from './http-interceptor.service';
 
 
 @NgModule({
@@ -41,7 +42,12 @@ import { authInterceptorProviders } from './_helpers/auth.interceptor';
     MatIconModule
     
   ],
-  providers: [AppService,authInterceptorProviders],
+  providers: [AppService,authInterceptorProviders,
+  {
+    provide:HTTP_INTERCEPTORS,
+    useClass:HttpInterceptorService,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
