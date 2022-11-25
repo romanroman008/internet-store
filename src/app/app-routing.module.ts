@@ -1,19 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { BasketComponent } from './basket/basket.component';
-import { BasketpageComponent } from './basketpage/basketpage.component';
+
 import { MainpageComponent } from './mainpage/mainpage.component';
-import { OrderPrepComponent } from './order-prep/order-prep.component';
-import { ProductsComponent } from './products/products.component';
-import { RegisterComponent } from './register/register.component';
-import { UseprofileextraComponent } from './useprofileextra/useprofileextra.component';
-import { UserprofileComponent } from './userprofile/userprofile.component';
+import { BasketpageComponent } from './order/basketpage/basketpage.component';
+import { OrderPrepComponent } from './order/order-prep/order-prep.component';
+import { ProductListComponent } from './product/productList/product-list.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { UseprofileextraComponent } from './user/useprofileextra/useprofileextra.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
 
 const routes: Routes = [
   {path:'',component:MainpageComponent},
-  {path:'products',component:ProductsComponent},
+  {path:'products',component:ProductListComponent},
   {path:'profile',component:UserprofileComponent},
-  {path:'register',component:RegisterComponent},
+  {path:'register',component:RegistrationComponent},
   {path:'basketpage',component:BasketpageComponent},
   {path:'orderprep',component:OrderPrepComponent},
   {path:'extrauser',component:UseprofileextraComponent}

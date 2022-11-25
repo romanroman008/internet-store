@@ -1,8 +1,10 @@
-import { Component, ElementRef, HostListener, Renderer2, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from './products/product.service';
-import { ProductModel } from './products/ProductModel';
+
 import { TokenStorageService } from './_services/token-storage.service';
+import { ProductService } from './product/product.service';
+import { ProductModel } from './product/ProductModel';
+
 // import { TokenStorageService } from './_services/token-storage.service';
 
 

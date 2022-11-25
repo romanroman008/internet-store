@@ -1,34 +1,33 @@
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
-import { MainpageComponent } from './mainpage/mainpage.component';
-import { ProductsComponent } from './products/products.component';
-import { UserprofileComponent } from './userprofile/userprofile.component';
-import { BasketComponent } from './basket/basket.component';
-import { RegisterComponent } from './register/register.component';
-import { FormsModule } from '@angular/forms';
-import { BasketpageComponent } from './basketpage/basketpage.component';
-import { MatIconModule } from '@angular/material/icon';
-import { OrderPrepComponent } from './order-prep/order-prep.component';
-
-import { UseprofileextraComponent } from './useprofileextra/useprofileextra.component';
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { HttpInterceptorService } from './http-interceptor.service';
+import { MainpageComponent } from './mainpage/mainpage.component';
+import { BasketComponent } from './order/basket/basket.component';
+import { BasketpageComponent } from './order/basketpage/basketpage.component';
+import { OrderPrepComponent } from './order/order-prep/order-prep.component';
+import { ProductListComponent } from './product/productList/product-list.component';
+import { RegistrationComponent } from './user/registration/registration.component';
+import { UseprofileextraComponent } from './user/useprofileextra/useprofileextra.component';
+import { UserprofileComponent } from './user/userprofile/userprofile.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MainpageComponent,
-    ProductsComponent,
+    ProductListComponent,
     UserprofileComponent,
     BasketComponent,
-    RegisterComponent,
+    RegistrationComponent,
     BasketpageComponent,
     OrderPrepComponent, 
     UseprofileextraComponent

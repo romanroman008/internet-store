@@ -1,8 +1,9 @@
-
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from '../products/product.service';
-import { ProductModel } from '../products/ProductModel';
+
+import { ProductService } from '../../product/product.service';
+import { ProductModel } from '../../product/ProductModel';
+
 
 @Component({
   selector: 'app-basket',

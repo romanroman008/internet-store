@@ -6,11 +6,11 @@ import { environment } from 'src/environments/environment';
 
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-registration',
+  templateUrl: './registration.component.html',
+  styleUrls: ['./registration.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegistrationComponent implements OnInit {
 
   model:any={}
   constructor(private router: Router ,private http:HttpClient) { }

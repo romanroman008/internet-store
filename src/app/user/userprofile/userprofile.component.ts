@@ -2,8 +2,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
-import { AuthenticationService } from '../authentication.service';
+
+import { AuthenticationService } from '../../authentication.service';
 
 @Component({
   selector: 'app-userprofile',

@@ -1,21 +1,21 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ThisReceiver } from '@angular/compiler';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { ProductService } from './product.service';
-import { ProductModel } from './ProductModel';
+
+import { ProductService } from '../product.service';
+import { ProductModel } from '../ProductModel';
 
 const API=environment.apiUrl+"product/";
 const httpOptions={
   headers:new HttpHeaders().append('Access-Control-Allow-Origin', '*').append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method")
 }
 @Component({
-  selector: 'app-products',
-  templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css']
+  selector: 'app-product-list',
+  templateUrl: './product-list.component.html',
+  styleUrls: ['./product-list.component.css']
 })
-export class ProductsComponent {
+export class ProductListComponent {
 
  
   productList:Array<ProductModel>=[];
