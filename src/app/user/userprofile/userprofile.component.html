@@ -3,18 +3,30 @@
     <div class="alldiv">
     <div class="logdiv">
         <div>
+    <form [formGroup]="loginForm" (ngSubmit)="login()">
             <h2>Zaloguj się</h2>
-      <p> Login <input [(ngModel)]="model.login" type="text" ></p>
-      <p> Hasło <input [(ngModel)]="model.password" type="password"></p>
+            
+      <p> Login <input formControlName="username" class="form-control" type="text" ></p>
+      <p> Hasło <input formControlName="password" type="password"></p>
       <button (click)="login()" class="regiButton">Zaloguj</button>
+      <div *ngIf="error" class="error">
+        <p>Błedne hasło lub login</p>
+        </div>
+    </form>
     </div>
+   
     </div>
+   
     <p class="orp">lub</p>
     <div class="regidiv">
         <div>
             <h2>Zarejestruj się</h2>
-            <button (click)="register()" class="regiButton">Załóż nowe konto</button>
+            <button (click)=" goToRegistrationPage()" class="regiButton">Załóż nowe konto</button>
     </div>
+    </div>
+
+    <div *ngIf="user!==null">
+       <p></p>
     </div>
 </div>
 </body>

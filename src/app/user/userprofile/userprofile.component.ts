@@ -1,9 +1,10 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { first } from 'rxjs';
 
-import { AuthenticationService } from '../../authentication.service';
+import { AuthenticationService } from '../../_services/authentication.service';
 
 @Component({
   selector: 'app-userprofile',
@@ -12,54 +13,65 @@ import { AuthenticationService } from '../../authentication.service';
 })
 export class UserprofileComponent implements OnInit {
 
-  model:any={}
-
+  //model:any={}
+  loginForm!: FormGroup;
+  error=false;
   errorMessage = 'Invalid Credentials';
   successMessage!: string;
   invalidLogin = false;
   loginSuccess = false;
+  user: any | null;
+  
 
 
-  constructor(private route: ActivatedRoute, private router:Router,private http:HttpClient,
-    private authenticationService: AuthenticationService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private router:Router,
+    private http:HttpClient,
+    private authenticationService: AuthenticationService,
+    private formBuilder: FormBuilder) { 
+      this.user=authenticationService.userValue;
+    }
 
   ngOnInit(): void {
+    this.loginForm = this.formBuilder.group({
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+  });
   }
+
+  get f(){return this.loginForm.controls;}
+
+ 
 
   login(){
-    let headers: HttpHeaders = new HttpHeaders().append('Access-Control-Allow-Origin', '*').append('Access-Control-Allow-Headers', "Access-Control-Allow-Headers, Access-Control-Allow-Origin, Access-Control-Request-Method");
-    let options = { headers: headers }
 
-    this.http.post<Observable<Object>>("http://localhost:8081/registration/login",
-    {
-      login:this.model.login,
-      password:this.model.password
-    },options
-    ).subscribe(
-      response=>{
-        if(response){
-          console.log(response)
-        this.router.navigate(['products'])
-        }
-      },error=>{
-        console.log(error);
-      }
-    )
+    // this.submitted = true;
+
+    // // reset alerts on submit
+    // this.alertService.clear();
+
+    // // stop here if form is invalid
+    // if (this.form.invalid) {
+    //     return;
+    // }
+
+    //this.loading = true;
+    this.authenticationService.login(this.loginForm.value)
+        .pipe(first())
+        .subscribe({
+            next: () => {
+                // get return url from query parameters or default to home page
+                const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+                this.router.navigateByUrl(returnUrl);
+            },
+            error: error => {
+                // this.alertService.error(error);
+                // this.loading = false;
+            }
+        });
   }
-
-  // login(){
-  //   this.authenticationService.authenticationService(this.model.username, this.model.password).subscribe((result)=> {
-  //     this.invalidLogin = false;
-  //     this.loginSuccess = true;
-  //     this.successMessage = 'Login Successful.';
-  //     this.router.navigate(['products']);
-  //   }, () => {
-  //     this.invalidLogin = true;
-  //     this.loginSuccess = false;
-  //   });      
-  // }
-
-  register(){
+  goToRegistrationPage(){
     this.router.navigate(['/register']);
   }
 }
