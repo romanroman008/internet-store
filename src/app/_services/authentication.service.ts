@@ -36,8 +36,9 @@ export class AuthenticationService {
   // }
 
   login(user:any) {
-    return this.http.post<any>(environment.apiUrl + "registration/login", user)
+    return this.http.post<any>(environment.apiUrl + "authenticate", user)
         .pipe(map(returnedUser => {
+          console.log("weszło");
             // store user details and jwt token in local storage to keep user logged in between page refreshes
             localStorage.setItem('currentUser', JSON.stringify(returnedUser));
            // this.currentUserSubject.next(user);
@@ -46,7 +47,7 @@ export class AuthenticationService {
 }
 
 register(user: any) {
-  return this.http.post(`${environment.apiUrl}/registration/register`, user);
+  return this.http.post(`${environment.apiUrl}register`, user);
 }
 
   
