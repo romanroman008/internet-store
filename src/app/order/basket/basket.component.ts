@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { ProductService } from '../../product/product.service';
+import { ProductService } from '../../_services/product.service';
 import { ProductModel } from '../../product/ProductModel';
 
 
@@ -13,10 +13,12 @@ import { ProductModel } from '../../product/ProductModel';
 export class BasketComponent implements OnInit {
 
   products:Array<ProductModel>=[];
-  //uniqueProducts:Array<ProductModel>=[]
-  //totalPrice:number=0;
-  constructor(private router:Router,private productService:ProductService) {
-    this.productService.getProducts().subscribe((products:Array<ProductModel>)=>
+  
+  constructor(
+    private router:Router,
+    private productService:ProductService
+    ) {
+    this.productService.getCartProducts().subscribe((products:Array<ProductModel>)=>
     {
       this.products=products;
     });

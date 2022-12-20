@@ -3,8 +3,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { first } from 'rxjs';
+import { ProductService } from 'src/app/_services/product.service';
 
 import { AuthenticationService } from '../../_services/authentication.service';
+import { User } from '../User';
 
 @Component({
   selector: 'app-userprofile',
@@ -18,9 +20,10 @@ export class UserprofileComponent implements OnInit {
   error=false;
   errorMessage = 'Invalid Credentials';
   successMessage!: string;
-  invalidLogin = false;
+  invalidLogin!:boolean;
   loginSuccess = false;
-  user: any | null;
+  user: User | null;
+  cartIsEmpty:boolean;
   
 
 
@@ -29,8 +32,11 @@ export class UserprofileComponent implements OnInit {
     private router:Router,
     private http:HttpClient,
     private authenticationService: AuthenticationService,
-    private formBuilder: FormBuilder) { 
+    private formBuilder: FormBuilder,
+    private productService:ProductService
+    ) { 
       this.user=authenticationService.userValue;
+      this.cartIsEmpty=this.productService.checkIfCartIsEmpty();
     }
 
   ngOnInit(): void {
@@ -38,11 +44,14 @@ export class UserprofileComponent implements OnInit {
       username: ['', Validators.required],
       password: ['', Validators.required]
   });
+
+
   }
 
   get f(){return this.loginForm.controls;}
 
- 
+  get username(){return this.loginForm.get('username');}
+  get password(){return this.loginForm.get('password');}
 
   login(){
 
@@ -56,6 +65,9 @@ export class UserprofileComponent implements OnInit {
     //     return;
     // }
 
+    this.loginForm.reset();
+    
+
     //this.loading = true;
     this.authenticationService.login(this.loginForm.value)
         .pipe(first())
@@ -65,14 +77,26 @@ export class UserprofileComponent implements OnInit {
                 // get return url from query parameters or default to home page
                // const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
                 this.router.navigate(['/products']);
+                // console.log(localStorage.getItem("currentUser"))
+                // console.log(this.user.login)
             },
             error: error => {
-                // this.alertService.error(error);
-                // this.loading = false;
+            
+               this.invalidLogin=true;
+              
             }
         });
   }
   goToRegistrationPage(){
     this.router.navigate(['/register']);
+  }
+
+  logout(){
+    this.authenticationService.logout();
+    window.location.reload();
+  }
+
+  goOn(){
+    this.router.navigate(['orderprep'])
   }
 }

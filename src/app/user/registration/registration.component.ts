@@ -14,59 +14,47 @@ import { AuthenticationService } from 'src/app/_services/authentication.service'
 export class RegistrationComponent implements OnInit {
 
   registrationForm!:FormGroup;
+  registrationError!:boolean;
+
+  
   constructor(
     private formBuilder:FormBuilder,
     private authenticationService:AuthenticationService,
     private router: Router,
     private http:HttpClient
     ) { }
+  
+  
 
-  loginError:string='red';
-  passwordError:boolean=false;
-  notMatched:boolean=false;
-  nameError:boolean=false;
-  surnameError:boolean=false;
-  dateError:boolean=false;
-  streetError:boolean=false;
-  codeError:boolean=false;
-  cityError:boolean=false;
-  countryError:boolean=false;
-  phoneError:boolean=false;
-  emailError:boolean=false;
+  
+
+
   successful:boolean=false;
 
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
-        firstName: ['', Validators.required],
-        lastName: ['', Validators.required],
-        login: ['', Validators.required],
-        password: ['', [Validators.required, Validators.minLength(6)]],
-        date: ['', Validators.required],
-        country: ['', Validators.required],
-        street: ['', Validators.required],
+        login: ['',Validators.required],
+        password: ['', Validators.required],
+        firstName: ['', [Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(2)]],
+        lastName: ['', [Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(2)]],
+        birthday: ['', Validators.required],
+        country: ['', [Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(3)]],
+        street: ['',[ Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(3)]],
+        houseNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
+        flatNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
         code: ['', Validators.required],
-        city: ['', Validators.required],
-        phone: ['', Validators.required],
-        email: ['', Validators.required],
+        city: ['',[ Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(2)]],
+        phone: ['', [Validators.required,Validators.pattern("[0-9]*"),Validators.maxLength(12)]],
+        email: ['', [Validators.required,Validators.email]]
     });
 }
 
+
+
 get f() { return this.registrationForm.controls; }
 
-  red='red';
-  // check(){
-  //    if(this.model.password1!==this.model.password2)
-  //    {
-  //      this.passwordError=true;
-  //    }
-  //    else{
-  //      this.passwordError=false;
-  //      this.successful=true;
-  //    }
-     
-   
-  // }
+ 
   go(){
     this.router.navigate(['products']);
   }
@@ -74,27 +62,21 @@ get f() { return this.registrationForm.controls; }
     this.successful=true;
   }
   sendRegistrationForm(){
-   // this.submitted = true;
-
-    // reset alerts on submit
-   // this.alertService.clear();
-
-    // stop here if form is invalid
-    // if (this.form.invalid) {
-    //   return;
-  //}
-
-    //this.loading = true;
+    
     this.authenticationService.register(this.registrationForm.value)
         .pipe(first())
         .subscribe({
             next: () => {
-             //  this.alertService.success('Registration successful', { keepAfterRouteChange: true });
-      //          this.router.navigate(['../login'], { relativeTo: this.route });
+
+      this.registrationError=false;
+      this.successful=true;
+     
             },
             error: error => {
-    //            this.alertService.error(error);
-      //          this.loading = false;
+              this.registrationError=true;
+              this.successful=false;
+              this.registrationForm.reset();
+              
             }
         });
 }

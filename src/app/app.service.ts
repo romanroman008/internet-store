@@ -15,4 +15,8 @@ export class AppService {
    products(){
      this.router.navigate(['products'])
    }
+
+   contact(){
+    this.router.navigate(['contact'])
+   }
 }

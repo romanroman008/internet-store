@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/_services/authentication.service';
+import { OrderService } from 'src/app/_services/order.service';
+import { User } from 'src/app/user/User';
 
-import { ProductService } from '../../product/product.service';
+import { ProductService } from '../../_services/product.service';
 import { ProductModel } from '../../product/ProductModel';
 
 @Component({
@@ -11,20 +14,20 @@ import { ProductModel } from '../../product/ProductModel';
 })
 export class BasketpageComponent implements OnInit {
 
+  user: User | null;
   products:Array<ProductModel>=[];
-  constructor(private router:Router,private productService:ProductService) {
-    this.productService.getProducts().subscribe((products:Array<ProductModel>)=>
+  constructor(
+    private router:Router,
+    private productService:ProductService,
+    private authenticationService:AuthenticationService,
+    private orderService:OrderService
+    ){
+    this.user=authenticationService.userValue;
+    this.productService.getCartProducts().subscribe((products:Array<ProductModel>)=>
     {
       this.products=products;
-      // this.products= [{name:"Beef jerky - papryka",price:29.99,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",amount:1},
-      // {name:"Beef jerky - czosnek",price:29.99,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",amount:1},
-      // {name:"Beef jerky - sweet-chilli",price:29.99,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",amount:1},
-      // {name:"Beef jerky - honey",price:29.99,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",amount:3},
-      // {name:"Beef jerky - orginal",price:29.99,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",amount:1},
-      // {name:"Beef jerky - sweet-spicy",price:29.99,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",amount:5},
-      // {name:"Beef jerky - spicy",price:29.99,description:"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",amount:1}]
-    
     });
+   
    }
 
   ngOnInit(): void {
@@ -40,9 +43,16 @@ export class BasketpageComponent implements OnInit {
   }
 
   goOn(){
-    this.router.navigate(['extrauser']);
+    if(this.user!==null){                       //go to order preparation if user is logged in
+      this.orderService.checkOrder();
+      this.router.navigate(['orderprep'])
+    }
+    if(this.user==null)                   //go to registration page if user is not logged in
+    this.router.navigate(['profile'])
+    
+
   }
-  continueShopping(){
+  continueShopping(){                        //go to product list page
     this.router.navigate(['products']);
   }
 

@@ -5,19 +5,48 @@
     <form [formGroup]="registrationForm" (ngSubmit)="sendRegistrationForm">
     <div *ngIf="!successful" class="regidiv">
         <h2>Twoje konto</h2>
-        <p><input  formControlName="login" id="p" type="text"  placeholder="Login"></p>
-        <p><input formControlName="password" type="password" placeholder="Hasło"></p>
-        <!-- <p><input formControlName="login" type="password" placeholder="Powtórz hasło"></p> -->
+        <p>
+            <input  formControlName="login" id="p" type="text"  placeholder="Login">
+        </p>
+        <p>
+            <input formControlName="password" type="password" placeholder="Hasło">
+        </p>
     
-        <p *ngIf="passwordError">Hasła nie są identyczne</p>
+    
+       
         <h2>Twoje dane</h2>
-        <p><input formControlName="firstName" class="name" type="text" placeholder="Imię"><input formControlName="lastName" class="surname" type="text" placeholder="Nazwisko"></p>
-        <p><input formControlName="date" type="text" onblur="(this.type='text')"  onfocus="(this.type='date')" placeholder="Data urodzenia"></p>
-        <p><input formControlName="street" type="text" placeholder="Ulica i numer"></p>
-        <p><input formControlName="code" class="code" type="text" placeholder="Kod pocztowy"><input formControlName="city" class="city" type="text" placeholder="Miasto"></p>
-        <p><input formControlName="country" type="text" placeholder="Kraj"></p>
-        <p><input formControlName="phone" class="phone" type="tel" placeholder="Telefon"><input formControlName="email" class="email" type="email" placeholder="Adres e-mail"></p>
-        <button (click)="sendRegistrationForm()">Załóż konto</button>
+        
+    
+            <p>
+                <input id="firstName" formControlName="firstName"  class="name" type="text" placeholder="Imię">
+                <input formControlName="lastName" class="surname" type="text" placeholder="Nazwisko">
+            </p>
+            <p>
+                <input formControlName="birthday" onblur="(this.type='text')"  onfocus="(this.type='date')" type="date"  placeholder="Data urodzenia">
+            </p>
+            <p>
+                <input  formControlName="street" class="street" type="text" placeholder="Ulica i numer">
+                <input  formControlName="houseNumber" class="houseNumber" type="text" inputmode="numeric" placeholder="domu">
+                <input  formControlName="flatNumber" class="flatNumber"  type="text" inputmode="numeric" placeholder="mieszkania">
+            </p>
+            <p>
+                <input formControlName="code" class="code" type="text" placeholder="Kod pocztowy">
+                <input formControlName="city" class="city" type="text" placeholder="Miasto"></p>
+            <p>
+                <input formControlName="country" type="text" placeholder="Kraj">
+            </p>
+            <p>
+                <input formControlName="phone" class="phone" type="tel" placeholder="Telefon">
+                <input formControlName="email" class="email" type="email" placeholder="Adres e-mail">
+            </p>
+            <p class="errorP">
+                <span style="color : red" *ngIf="registrationForm&&registrationForm.invalid&&registrationForm.touched">Pola niepoprawnie uzupełnione</span>
+                <br><span style="color:red" *ngIf="registrationError"> Błąd rejestracji</span>
+                <p>
+             
+            <button [disabled]="registrationForm.invalid" [ngClass]="{'disabledButton' : registrationForm.invalid}" (click)="sendRegistrationForm()">Przejdź dalej</button>
+           
+      
     </div>  
     
     <div *ngIf="successful" class="confirmdiv">

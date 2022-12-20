@@ -87,3 +87,20 @@ button:hover{
     font-size: large;
     font-weight: bold;
 }
+
+.street{
+    width: 230px;
+    border-radius: 20px 0px 0px 20px;
+    
+}
+
+.houseNumber{
+    width: 70px;
+    border-radius: 0px 0px 0px 0px;
+
+}
+.flatNumber{
+    width: 100px;
+    border-radius: 0px 20px 20px 0px;
+
+}

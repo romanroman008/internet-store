@@ -2,20 +2,7 @@ body{
     text-align: center;
     color: white;
 }
-.error{
 
-    background-color:#572F0E ;
-    color: white;
-    width: 400px;
-    height: 50px;
-    text-align:center;
-    vertical-align: middle;
-    display:flex;
-    align-items:flex-start;
-    justify-content: center;
-    border-radius: 50px;
-    margin-left: 50px;
-}
 .regidiv{
     background-color:#572F0E;
     width: 600px;
@@ -59,7 +46,7 @@ border-radius: 0px 20px 20px 0px;
 border-radius: 0px 20px 20px 0px;
 }
 p{
-    padding: 10px;
+    padding: 7px;
 }
 .phone{
     width: 100px;
@@ -68,6 +55,25 @@ p{
 .email{
     width: 300px;
 border-radius: 0px 20px 20px 0px;
+}
+
+
+
+.street{
+    width: 230px;
+    border-radius: 20px 0px 0px 20px;
+    
+}
+
+.houseNumber{
+    width: 70px;
+    border-radius: 0px 0px 0px 0px;
+
+}
+.flatNumber{
+    width: 100px;
+    border-radius: 0px 20px 20px 0px;
+
 }
 
 button{
@@ -83,6 +89,23 @@ button{
 }
 button:hover{
     background-color:#7B4D27 ;
+}
+
+.disabledButton{
+    background-color: #956944;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 200px;
+    opacity: 50%;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 1rem;
+    margin-bottom: 20px;
+}
+
+.disabledButton:hover{
+    background-color: #956944;
 }
 
 .confirmdiv{
@@ -157,23 +180,7 @@ table, td {
     /* display: block; */
    padding-bottom: 10px;
 }
-button{
-    background-color: #956944;
-    color: white;
-    border: none;
-    height: 40px;
-    width: 200px;
-    font-size: large;
-    font-weight: bold;
-    border-radius: 1rem;
-    margin-bottom: 15px;
-    margin-top: 20px;
-    font-family:"Amerika Sans",sans-serif;
-}
-button:hover{
-    background-color: #7B4D27;
-    /* color: black; */
-}
+
 .b1{
     margin-right: 500px;
 }
@@ -214,5 +221,6 @@ h1,h2{
 }
 
 h1,h2,p{
+    
     font-family:"Amerika Sans",sans-serif; 
   }

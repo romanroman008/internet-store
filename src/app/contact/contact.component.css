@@ -1,0 +1,40 @@
+.regidiv{
+    background-color:#572F0E;
+    width: 600px;
+    margin: 50px;
+    border-radius: 5rem;
+}
+
+.maindiv{
+    margin-top: 3%;
+    background-color:#572F0E;
+    color:white;
+    height:150px;
+    width: 500px;
+    border-radius: 5rem;
+}
+h1{
+    font-family:"Amerika Sans",sans-serif; 
+    text-align: center;
+    font-weight: bold;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+a:link{
+    color:#956944;
+}
+a:visited{
+    color:#956944;
+}
+
+.info{
+    text-align: left;
+    margin-left: 50px;
+    font-weight: bold;
+}

@@ -5,7 +5,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppService } from './app.service';
@@ -16,8 +15,9 @@ import { BasketpageComponent } from './order/basketpage/basketpage.component';
 import { OrderPrepComponent } from './order/order-prep/order-prep.component';
 import { ProductListComponent } from './product/productList/product-list.component';
 import { RegistrationComponent } from './user/registration/registration.component';
-import { UseprofileextraComponent } from './user/useprofileextra/useprofileextra.component';
 import { UserprofileComponent } from './user/userprofile/userprofile.component';
+import { ContactComponent } from './contact/contact.component';
+
 
 
 @NgModule({
@@ -29,8 +29,8 @@ import { UserprofileComponent } from './user/userprofile/userprofile.component';
     BasketComponent,
     RegistrationComponent,
     BasketpageComponent,
-    OrderPrepComponent, 
-    UseprofileextraComponent
+    OrderPrepComponent,
+    ContactComponent, 
   ],
   imports: [
     BrowserModule,
@@ -42,7 +42,7 @@ import { UserprofileComponent } from './user/userprofile/userprofile.component';
     ReactiveFormsModule
     
   ],
-  providers: [AppService,authInterceptorProviders,
+  providers: [AppService,
   {
     provide:HTTP_INTERCEPTORS,
     useClass:HttpInterceptorService,

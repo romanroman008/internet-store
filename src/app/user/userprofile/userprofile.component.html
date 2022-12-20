@@ -1,19 +1,21 @@
 <body>
+    <div *ngIf="user==null" class="noUserLogged">
     <h1>Witaj</h1>
-    <div class="alldiv">
+    <div class="alldiv" >   
     <div class="logdiv">
-        <div>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
             <h2>Zaloguj się</h2>
             
-      <p> Login <input formControlName="username" class="form-control" type="text" ></p>
-      <p> Hasło <input formControlName="password" type="password"></p>
-      <button (click)="login()" class="regiButton">Zaloguj</button>
-      <div *ngIf="error" class="error">
-        <p>Błedne hasło lub login</p>
-        </div>
+      <p>
+        Login <input formControlName="username" class="form-control" type="text" >
+    </p>
+      <p> 
+        Hasło <input formControlName="password" type="password">
+    </p>
+    <p><span style="color:red" *ngIf="invalidLogin">Nie udało się zalogować</span></p>
+      <button [disabled]="loginForm.invalid" [ngClass]="{'disabledButton':loginForm.invalid}" (click)="login()" class="regiButton">Zaloguj</button>
     </form>
-    </div>
+
    
     </div>
    
@@ -22,12 +24,19 @@
         <div>
             <h2>Zarejestruj się</h2>
             <button (click)=" goToRegistrationPage()" class="regiButton">Załóż nowe konto</button>
+            <p><button [disabled]="cartIsEmpty" [ngClass]="{'disabledButton' : cartIsEmpty}" (click)="goOn()" class="regiButton">Zamów bez konta</button></p>
     </div>
     </div>
+</div>
+</div>
 
-    <div *ngIf="user!==null">
-       <p></p>
-    </div>
+<div *ngIf="user!==null" class="userLogged">
+    <h2>Twój profil</h2>
+    <p>Coś tam</p>
+    <p>Coś tam</p>
+    <p>Coś tam</p>
+    <p>Coś tam</p>
+    <button (click)="logout()" class="logout_button">Wyloguj</button>
 </div>
 </body>
 

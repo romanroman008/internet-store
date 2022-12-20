@@ -2,6 +2,30 @@
     background-color: #804F1D ;
 } */
 
+
+.disabledButton{
+  background-color: #956944;
+  color: white;
+  border: none;
+  height: 40px;
+  width: 200px;
+  opacity: 50%;
+  font-size: large;
+  font-weight: bold;
+  border-radius: 1rem;
+  margin-bottom: 20px;
+}
+
+button:hover{
+
+  background-color:#7B4D27 ;
+ 
+}
+
+.disabledButton:hover{
+  background-color: #956944;
+}
+
 h1,h2,p{
   font-family:"Amerika Sans",sans-serif; 
 }
@@ -253,5 +277,7 @@ z-index: 5;
 .trash{
   height: 20px;
 }
+
+
 
 

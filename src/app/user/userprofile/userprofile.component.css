@@ -1,5 +1,6 @@
 body{
     text-align: center;
+    
 }
 h1,h2{
     text-align: center;
@@ -10,11 +11,13 @@ h1,h2,p{
     font-family:"Amerika Sans",sans-serif; 
   }
 
+
+
 .logdiv{
     background-color:#572F0E ;
     color: white;
     width: 400px;
-    height: 170px;
+    height: 200px;
     text-align: center;
     vertical-align: middle;
     display:flex;
@@ -28,7 +31,7 @@ h1,h2,p{
     background-color:#572F0E ;
     color: white;
     width: 400px;
-    height: 150px;
+    height: 200px;
     text-align:center;
     vertical-align: middle;
     display:flex;
@@ -47,12 +50,16 @@ h1,h2,p{
     font-size: large;
     font-weight: bold;
     border-radius: 1rem;
+    
 }
-.regiButton:hover{
-
+button:hover{
     background-color:#7B4D27 ;
-   
 }
+
+.disabledButton:hover{
+    background-color: #956944;
+}
+
 h2{
     text-align: center;
 }
@@ -79,4 +86,33 @@ p{
 input{
   border-radius: 5px;
   border: none;
+}
+.userLogged{
+    background-color:#572F0E ;
+    color: white;
+    width: 400px;
+    height: 250px;
+    text-align: center;
+    border-radius: 50px;
+    margin:auto;
+    margin-top: 50px;
+}
+
+.logout_button{
+    background-color: #956944;
+    color: white;
+    border: none;
+    height: 40px;
+    width: 200px;
+    font-size: large;
+    font-weight: bold;
+    border-radius: 1rem;
+}
+.logout_button:hover{
+
+    background-color:#7B4D27;
+   
+}
+button{
+    margin: 7px;
 }

@@ -1,8 +1,9 @@
 import { Component, ElementRef, Renderer2, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { AuthenticationService } from './_services/authentication.service';
+import { ProductService } from './_services/product.service';
 import { TokenStorageService } from './_services/token-storage.service';
-import { ProductService } from './product/product.service';
 import { ProductModel } from './product/ProductModel';
 
 // import { TokenStorageService } from './_services/token-storage.service';
@@ -27,9 +28,14 @@ export class AppComponent {
   username:string | undefined;
   showAdminBoard=false;
 
-  constructor(private tokenStorageService:TokenStorageService,private router:Router,private productService:ProductService,private el:ElementRef,
+  constructor(
+    private authenticationService:AuthenticationService,
+    private tokenStorageService:TokenStorageService,
+    private router:Router,
+    private productService:ProductService,
+    private el:ElementRef,
     private renderer:Renderer2){
-    this.productService.getProducts().subscribe((products:Array<ProductModel>)=>
+    this.productService.getCartProducts().subscribe((products:Array<ProductModel>)=>
     {
      this.totalPrice=products.reduce((sum,prod)=>{
       
@@ -38,7 +44,7 @@ export class AppComponent {
        }
        return sum;//dd
      },0)
-     this.total=productService.getTotalProducts();
+     this.total=productService.getTotalNumberOfProducts();
     });
   }
 
@@ -57,8 +63,9 @@ export class AppComponent {
 
 
   logout(){
-    this.tokenStorageService.signOut();
-    window.location.reload();
+    // this.tokenStorageService.signOut();
+    // window.location.reload();
+    this.authenticationService.logout();
     }
   
 
@@ -76,6 +83,11 @@ export class AppComponent {
   profile(){
     this.router.navigate(['profile'])
   }
+
+  contact(){
+    this.router.navigate(['contact'])
+  }
+
   basket(){
     this.router.navigate(['basketpage'])
   }
@@ -102,18 +114,7 @@ export class AppComponent {
     this.mouseOverValue=true;
   }
   position(){
-    // let pos=document.getElementById("tu")?.offsetTop;
-    // let x=document.getElementById("tu")?.offsetHeight;
-    // let y=document.getElementById("tu")?.offsetWidth;
-    // let z=document.getElementById("tu")?.offsetLeft;
-    // console.log(pos);
-    // console.log(x);
-    // console.log(y);
-    // console.log(z);
-    // let pos1=document.getElementById("ru")?.offsetTop;
-    // console.log(pos1);
 
-    //document.getElementById("carton")?.onfocus(this.mouseOver());
     let pos=document.getElementById("carton")?.offsetTop;
     let h=document.getElementById("carton")?.offsetHeight;
     let x=document.getElementById("carton")?.offsetLeft;
