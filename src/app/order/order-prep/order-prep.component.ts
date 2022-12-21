@@ -78,7 +78,7 @@ export class OrderPrepComponent implements OnInit{
     date: ['', Validators.required],
     country: ['', [Validators.required,Validators.pattern("[a-zA-Z]*")]],
     street: ['',[ Validators.required,Validators.pattern("[a-zA-Z]*")]],
-    houseNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
+    streetNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
     flatNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
     code: ['', Validators.required],
     city: ['',[ Validators.required,Validators.pattern("[a-zA-Z]*")]],
@@ -89,8 +89,9 @@ export class OrderPrepComponent implements OnInit{
 
 
   sendInformations(){
-    this.orderService.addOrderFromUnregisteredUser(this.informationForm.value);
     this.checkOrder();
+    this.orderService.addOrderFromUnregisteredUser(this.informationForm.value);
+    this.productService.clearCart();
   }
 
   checkOrder(){                               
@@ -99,9 +100,9 @@ export class OrderPrepComponent implements OnInit{
   }
 
 
-sendOrder(){
+go(){
   this.orderService.addOrder();
-  this.productService.clearCart();
+  
   this.router.navigate(['products']);
 }
 

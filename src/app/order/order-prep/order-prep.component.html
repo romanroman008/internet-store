@@ -14,7 +14,7 @@
         </p>
         <p>
             <input  formControlName="street" class="street" type="text" placeholder="Ulica i numer">
-            <input  formControlName="houseNumber" class="houseNumber" type="text" inputmode="numeric" placeholder="domu">
+            <input  formControlName="streetNumber" class="houseNumber" type="text" inputmode="numeric" placeholder="domu">
             <input  formControlName="flatNumber" class="flatNumber"  type="text" inputmode="numeric" placeholder="mieszkania">
         </p>
         <p>
@@ -70,7 +70,7 @@
         <p><input [(ngModel)]="userDetails.country" type="text" placeholder="Kraj"></p>
         <p><input [(ngModel)]="userDetails.phone" class="phone" type="tel"><input [(ngModel)]="userDetails.email" class="email" type="email"></p>
         <button (click)="checkOrder()">Przejdź dalej</button> -->
-               <button (click)="sendOrder()">Potwierdź</button>
+               <button (click)="go()">Potwierdź</button>
             </div>
         
         </div>

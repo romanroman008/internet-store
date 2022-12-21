@@ -65,7 +65,7 @@ export class UserprofileComponent implements OnInit {
     //     return;
     // }
 
-    this.loginForm.reset();
+   
     
 
     //this.loading = true;
@@ -86,6 +86,7 @@ export class UserprofileComponent implements OnInit {
               
             }
         });
+        this.loginForm.reset();
   }
   goToRegistrationPage(){
     this.router.navigate(['/register']);

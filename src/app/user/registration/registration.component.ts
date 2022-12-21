@@ -34,14 +34,14 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit() {
     this.registrationForm = this.formBuilder.group({
-        login: ['',Validators.required],
-        password: ['', Validators.required],
+        login: ['',[Validators.required,Validators.minLength(6)]],
+        password: ['', [Validators.required,Validators.minLength(6)]],
         firstName: ['', [Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(2)]],
         lastName: ['', [Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(2)]],
         birthday: ['', Validators.required],
         country: ['', [Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(3)]],
         street: ['',[ Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(3)]],
-        houseNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
+        streetNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
         flatNumber: ['',[ Validators.required,Validators.pattern("[0-9]*")]],
         code: ['', Validators.required],
         city: ['',[ Validators.required,Validators.pattern("[a-zA-Z]*"),Validators.minLength(2)]],

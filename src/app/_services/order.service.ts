@@ -85,6 +85,8 @@ addOrderFromUnregisteredUser(user:any){          //add new order without registr
     lastName:user.lastName,
     birthday:new Date(),
     street:user.street,
+    streetNumber:user.streetNumber,
+    flatNumber:user.flatNumber,
     city:user.city,
     country:user.country,
     phone:user.phone,
